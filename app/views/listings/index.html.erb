@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+<br><br><br>
+<h1>Listings</h1>
+<div class="product-block">
+<table class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th class="col-md-2">Title</th>
+    	<th class="col-md-2">Price</th>
+      <th class="col-md-2">Description</th>
+    	<th class="col-md-2">Measurements</th>
+      <th class="col-md-2">Shipping</th>
+    	<th class="col-md-2">Availability</th>
+      <th class="col-md-2">State</th>
+    	<th class="col-md-2">City</th>
+      <th class="col-md-2">Suburb</th>
+    	<th class="col-md-4">Options</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @listings.each do |listing| %>
+      <tr>
+        <td class="col-md-2"><%= listing.title %></td>
+        <td class="col-md-2"><%= listing.price %></td>
+        <td class="col-md-2"><%= listing.description %></td>
+        <td class="col-md-2"><%= listing.measurements %></td>
+        <td class="col-md-2"><%= listing.shipping %></td>
+        <td class="col-md-2"><%= listing.availability %></td>
+        <td class="col-md-2"><%= listing.state %></td>
+        <td class="col-md-2"><%= listing.city %></td>
+        <td class="col-md-2"><%= listing.suburb %></td>
+        <td class="col-md-4">
+          <td><%= link_to 'Show', listing_path(listing), class: "btn btn-info" %></td>
+          <td><%= link_to 'Edit', edit_listing_path(listing), class: "btn  btn-warning" %></td>
+          <td><%= link_to 'Destroy', listing_path(listing), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+<br>
+
+<%= link_to 'New Listing', new_listing_path, class: "btn btn-primary" %>
