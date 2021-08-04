@@ -14,6 +14,7 @@
       <th class="col-md-2">State</th>
     	<th class="col-md-2">City</th>
       <th class="col-md-2">Suburb</th>
+      <th class="col-md-2">Seller</th>
     	<th class="col-md-4">Options</th>
     </tr>
   </thead>
@@ -30,6 +31,7 @@
         <td class="col-md-2"><%= listing.state %></td>
         <td class="col-md-2"><%= listing.city %></td>
         <td class="col-md-2"><%= listing.suburb %></td>
+        <td class="col-md-2"><%= listing.user.try(:email) %></td>
         <td class="col-md-4">
           <td><%= link_to 'Show', listing_path(listing), class: "btn btn-info" %></td>
           <td><%= link_to 'Edit', edit_listing_path(listing), class: "btn  btn-warning" %></td>

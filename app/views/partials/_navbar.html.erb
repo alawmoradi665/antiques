@@ -21,8 +21,22 @@
                   <li><a class="dropdown-item" href="#">My listings</a></li>
                 </ul>
               </li>
-            </ul>
-
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  MY PROFILE
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <% if user_signed_in? %>
+                    <li><%= link_to "Edit profile", edit_user_registration_path, class:"dropdown-item" %></li>
+                    <% else %>
+                    <li><%= link_to "Login", new_user_session_path, class:"dropdown-item" %></li>
+                    <li><%= link_to "Sign up", new_user_registration_path, class:"dropdown-item" %></li>
+                    <% end %>
+                    <% if user_signed_in? %>
+                    <li><%= link_to "Logout", destroy_user_session_path, method: :delete, class:"dropdown-item" %></li>
+                    <% end %>
+                </ul>
+              </li>
           </div>
         </div>
       </nav>

@@ -1,5 +1,6 @@
 class ListingsController < ApplicationController
-  before_action :set_listing, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: [:index, :show]
+  
 
   # GET /listings 
   def index
@@ -22,6 +23,7 @@ class ListingsController < ApplicationController
   # POST /listings 
   def create
     @listing = Listing.new(listing_params)
+    @listing.user = current_user
       if @listing.save
         redirect_to @listing, notice: 'Listing was successfully created.'
       else
@@ -45,13 +47,15 @@ class ListingsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_listing
-      @listing = Listing.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_listing
+    @listing = Listing.find(params[:id])
+  end
 
     # Only allow a list of trusted parameters through.
     def listing_params
       params.require(:listing).permit(:title, :price, :description, :measurements, :shipping, :availability, :state, :city, :suburb)
     end
+
+ 
 end
